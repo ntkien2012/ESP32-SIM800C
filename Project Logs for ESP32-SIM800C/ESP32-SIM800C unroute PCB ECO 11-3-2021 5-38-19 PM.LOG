@@ -1,0 +1,4 @@
+Change Net Name : Old Net Name=NetIC3_4 New Net Name=USB_P
+Change Net Name : Old Net Name=NetIC3_5 New Net Name=USB_N
+Added Differential Pair: Name=USB
+Added Member To Class: ClassName=Designator Member=Component ESD1 36# ESDA6V1-5SC6

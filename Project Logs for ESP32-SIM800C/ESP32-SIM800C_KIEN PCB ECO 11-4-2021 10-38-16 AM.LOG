@@ -1,0 +1,7 @@
+Added Component: Designator=ANT1(atenna_ra)
+Added Pin To Net: NetName=NetANT1_1 Pin=ANT1-1
+Added Pin To Net: NetName=SGND Pin=ANT1-2
+Added Pin To Net: NetName=SGND Pin=ANT1-3
+Added Pin To Net: NetName=SGND Pin=ANT1-4
+Added Pin To Net: NetName=SGND Pin=ANT1-5
+Added Member To Class: ClassName=Designator Member=Component ANT1 SMA ANTENNA

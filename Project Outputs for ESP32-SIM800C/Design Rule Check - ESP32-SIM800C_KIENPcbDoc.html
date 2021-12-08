@@ -1,0 +1,516 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD21\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">11/3/2021</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">8:44:49 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:02</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc" class="file"><acronym title="I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc">I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">60</td></tr>
+</table>
+</td>
+</table><a name="IDPFZCG5SST1ENIBZC4LS2CQFB5FTBYDCRJCB0OSDIWOCS1DGGLFGJ"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDY5QHOCYLWCRFCKVWCSWK4HHSNTNMBH0L3RTQ4HALNY14BOPNLMP">Clearance Constraint (Gap=0.127mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQUZAPNNDUN0TBYEZANKUQUOEBFVUXJTX4D2TPDIET20PXZKZU1VM">Clearance Constraint (Gap=0.5mm) (InPolygon),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDLSJN5H5SWTUWXWIZDHCZURDFDR11EKL4GQQC4HU3PDYM3TKAQRM">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDLRVHVVQ05PDLIK0FK0R3JSVI2CIAORK1MGFIYYJZ0425QXKCN3QH">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDL4HWP1GUETCALJLQBJ5DBPHM1D52ZJMNYPBIRXNEN4YT3OW52SLD">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDEJIV2XUDAPHWDTNJLUR0UKDAVMZKYXEY02QIMRKJJI4M3UNZH3YI">Width Constraint (Min=0.127mm) (Max=1mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEUCL1IUPJVCPBDRT2LISAYJG3DNMWJAGCAO1KKG2TU2WTJUA4QS">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDCD12E3CKVY4KFOUB0EGF4LPMTOYZUT5HC44NGSPIA51JU2IZP2LK">Hole Size Constraint (Min=0.025mm) (Max=3.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDYZLNUJDWCBTLNJ3K5DSZUB1QFNDQGGMFUTE0M3O5WEH12TBEYSXB">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDNXISSELJN3M2OLK30IJMN3DCBBI5OZAWVE0NC3DSNMBC2TV2T5W">Minimum Solder Mask Sliver (Gap=0.1mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEHX1MFWWYBD2N1EABGUVGVHUVGAPFN1SAPX3W1CZZZAT3C2D0JOL">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</a></td>
+<td class="column2">26</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDODAUOXT30CTEFMPKL41X5UH4KLP5SMNTUBKFA1JQVY0X2OCIE3AJ">Silk to Silk (Clearance=0.254mm) (All),(All)</a></td>
+<td class="column2">34</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID2MAQ2MFNYO5KC3NOVTGWMWPATFV3M4FZOQG1LLE3JJ44C1A1WIDF">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZB2H0GROHYNDONNGWWCTJEQW5OMYCFGBDUFDJGBSJQXGMFFIQSX">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">60</td>
+</tr>
+</table><br><a name="IDEHX1MFWWYBD2N1EABGUVGVHUVGAPFN1SAPX3W1CZZZAT3C2D0JOL"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.1mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.531mil|Location2.X=1551.156mil|Location1.Y=2957.636mil|Location2.Y=2961.261mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.531mil|Location2.X=1551.156mil|Location1.Y=2957.636mil|Location2.Y=2961.261mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (40.202mm,75.221mm) on Bottom Overlay And Pad J2-1(40.202mm,75.221mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.531mil|Location2.X=1551.156mil|Location1.Y=2957.636mil|Location2.Y=2961.261mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1547.531mil|Location2.X=1551.156mil|Location1.Y=2957.636mil|Location2.Y=2961.261mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (40.202mm,75.221mm) on Top Overlay And Pad J2-1(40.202mm,75.221mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2022.535mil|Location2.X=2027.722mil|Location1.Y=2392.616mil|Location2.Y=2397.803mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2022.535mil|Location2.X=2027.722mil|Location1.Y=2392.616mil|Location2.Y=2397.803mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.097mm &lt; 0.1mm) Between Arc (52.487mm,57.196mm) on Top Overlay And Pad C2-1(52.487mm,60.746mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2105.113mil|Location2.X=2110.3mil|Location1.Y=2392.616mil|Location2.Y=2397.803mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2105.113mil|Location2.X=2110.3mil|Location1.Y=2392.616mil|Location2.Y=2397.803mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.097mm &lt; 0.1mm) Between Arc (52.487mm,57.196mm) on Top Overlay And Pad C2-1(52.487mm,60.746mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2022.535mil|Location2.X=2027.722mil|Location1.Y=2105.819mil|Location2.Y=2111.006mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2022.535mil|Location2.X=2027.722mil|Location1.Y=2105.819mil|Location2.Y=2111.006mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.097mm &lt; 0.1mm) Between Arc (52.487mm,57.196mm) on Top Overlay And Pad C2-2(52.487mm,53.646mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2105.113mil|Location2.X=2110.3mil|Location1.Y=2105.819mil|Location2.Y=2111.006mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2105.113mil|Location2.X=2110.3mil|Location1.Y=2105.819mil|Location2.Y=2111.006mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.097mm &lt; 0.1mm) Between Arc (52.487mm,57.196mm) on Top Overlay And Pad C2-2(52.487mm,53.646mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.794mil|Location2.X=2404.419mil|Location1.Y=3365.857mil|Location2.Y=3369.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.794mil|Location2.X=2404.419mil|Location1.Y=3365.857mil|Location2.Y=3369.481mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (61.875mm,85.59mm) on Bottom Overlay And Pad J5-1(61.875mm,85.59mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.794mil|Location2.X=2404.419mil|Location1.Y=3365.857mil|Location2.Y=3369.481mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2400.794mil|Location2.X=2404.419mil|Location1.Y=3365.857mil|Location2.Y=3369.481mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (61.875mm,85.59mm) on Top Overlay And Pad J5-1(61.875mm,85.59mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3298.335mil|Location2.X=3303.522mil|Location1.Y=2242.908mil|Location2.Y=2248.095mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3298.335mil|Location2.X=3303.522mil|Location1.Y=2242.908mil|Location2.Y=2248.095mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.098mm &lt; 0.1mm) Between Arc (79.157mm,58.085mm) on Top Overlay And Pad C4-1(83.507mm,58.085mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.098mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.313mil|Location2.X=2934.5mil|Location1.Y=2325.527mil|Location2.Y=2330.714mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.313mil|Location2.X=2934.5mil|Location1.Y=2325.527mil|Location2.Y=2330.714mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.098mm &lt; 0.1mm) Between Arc (79.157mm,58.085mm) on Top Overlay And Pad C4-2(74.807mm,58.085mm) on Top Layer [Top Overlay] to [Top Solder] clearance [0.098mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.36mil|Location2.X=3442.984mil|Location1.Y=2916.215mil|Location2.Y=2919.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.36mil|Location2.X=3442.984mil|Location1.Y=2916.215mil|Location2.Y=2919.84mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (88.254mm,74.169mm) on Bottom Overlay And Pad J1-1(88.254mm,74.169mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.36mil|Location2.X=3442.984mil|Location1.Y=2916.215mil|Location2.Y=2919.84mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3439.36mil|Location2.X=3442.984mil|Location1.Y=2916.215mil|Location2.Y=2919.84mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (88.254mm,74.169mm) on Top Overlay And Pad J1-1(88.254mm,74.169mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.545mil|Location2.X=3685.169mil|Location1.Y=2438.779mil|Location2.Y=2442.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.545mil|Location2.X=3685.169mil|Location1.Y=2438.779mil|Location2.Y=2442.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (94.406mm,62.042mm) on Bottom Overlay And Pad J3-1(94.406mm,62.042mm) on Multi-Layer [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.545mil|Location2.X=3685.169mil|Location1.Y=2438.779mil|Location2.Y=2442.403mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3681.545mil|Location2.X=3685.169mil|Location1.Y=2438.779mil|Location2.Y=2442.403mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Arc (94.406mm,62.042mm) on Top Overlay And Pad J3-1(94.406mm,62.042mm) on Multi-Layer [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2455.439mil|Location2.X=2460.626mil|Location1.Y=2695.143mil|Location2.Y=2700.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2455.439mil|Location2.X=2460.626mil|Location1.Y=2695.143mil|Location2.Y=2700.33mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.032mm &lt; 0.1mm) Between Pad C1-1(62.925mm,68.95mm) on Top Layer And Text "U1" (61.493mm,68.351mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.032mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2748.866mil|Location2.X=2752.491mil|Location1.Y=1750.786mil|Location2.Y=1754.411mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2748.866mil|Location2.X=2752.491mil|Location1.Y=1750.786mil|Location2.Y=1754.411mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad C12-1(70.229mm,44.75mm) on Top Layer And Text "C9" (69.367mm,43.891mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1416.529mil|Location2.X=1420.154mil|Location1.Y=4887.706mil|Location2.Y=4891.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1416.529mil|Location2.X=1420.154mil|Location1.Y=4887.706mil|Location2.Y=4891.33mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad IC1-3(36.79mm,124mm) on Multi-Layer And Text "R25" (35.839mm,123.444mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1441.188mil|Location2.X=1444.812mil|Location1.Y=3290.706mil|Location2.Y=3294.33mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1441.188mil|Location2.X=1444.812mil|Location1.Y=3290.706mil|Location2.Y=3294.33mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad R16-1(37mm,84.125mm) on Top Layer And Text "U6" (36.652mm,82.88mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.273mil|Location2.X=1773.46mil|Location1.Y=4728.208mil|Location2.Y=4733.395mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.273mil|Location2.X=1773.46mil|Location1.Y=4728.208mil|Location2.Y=4733.395mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.1mm) Between Pad R37-1(45.475mm,120.9mm) on Bottom Layer And Track (44.594mm,119.975mm)(45.194mm,119.975mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1776.698mil|Location2.X=1781.885mil|Location1.Y=4728.208mil|Location2.Y=4733.395mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1776.698mil|Location2.X=1781.885mil|Location1.Y=4728.208mil|Location2.Y=4733.395mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.075mm &lt; 0.1mm) Between Pad R37-1(45.475mm,120.9mm) on Bottom Layer And Track (45.194mm,119.375mm)(45.194mm,119.975mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.075mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2620.866mil|Location2.X=2624.491mil|Location1.Y=1751.786mil|Location2.Y=1755.411mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2620.866mil|Location2.X=2624.491mil|Location1.Y=1751.786mil|Location2.Y=1755.411mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad R9-1(66.824mm,44.623mm) on Top Layer And Text "C14" (66.116mm,43.917mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2538.573mil|Location2.X=2542.198mil|Location1.Y=1727.188mil|Location2.Y=1730.812mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2538.573mil|Location2.X=2542.198mil|Location1.Y=1727.188mil|Location2.Y=1730.812mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad R9-2(65.074mm,44.623mm) on Top Layer And Text "C13" (63.703mm,43.917mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2409.188mil|Location2.X=2412.812mil|Location1.Y=1760.151mil|Location2.Y=1763.776mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2409.188mil|Location2.X=2412.812mil|Location1.Y=1760.151mil|Location2.Y=1763.776mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad U2-5(61.585mm,45.004mm) on Top Layer And Text "R7" (61.239mm,44.018mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1775.626mil|Location2.X=1779.25mil|Location1.Y=3071.726mil|Location2.Y=3075.351mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1775.626mil|Location2.X=1779.25mil|Location1.Y=3071.726mil|Location2.Y=3075.351mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad U6-3(46.27mm,78.468mm) on Top Layer And Text "R19" (44.272mm,77.419mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1790.384mil|Location2.X=1794.009mil|Location1.Y=3485.866mil|Location2.Y=3489.491mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1790.384mil|Location2.X=1794.009mil|Location1.Y=3485.866mil|Location2.Y=3489.491mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad U7-3(46.27mm,89.002mm) on Top Layer And Text "R20" (44.272mm,88.087mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1790.384mil|Location2.X=1794.009mil|Location1.Y=2697.356mil|Location2.Y=2700.981mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1790.384mil|Location2.X=1794.009mil|Location1.Y=2697.356mil|Location2.Y=2700.981mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.1mm) Between Pad U8-3(46.27mm,68.959mm) on Top Layer And Text "R27" (44.272mm,67.97mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDODAUOXT30CTEFMPKL41X5UH4KLP5SMNTUBKFA1JQVY0X2OCIE3AJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.167mil|Location2.X=3089.833mil|Location1.Y=2096.086mil|Location2.Y=2103.753mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3082.167mil|Location2.X=3089.833mil|Location1.Y=2096.086mil|Location2.Y=2103.753mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Arc (79.157mm,58.085mm) on Top Overlay And Text "C5" (78.384mm,53.213mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3890.967mil|Location2.X=3902.217mil|Location1.Y=1924.055mil|Location2.Y=1936.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3890.967mil|Location2.X=3902.217mil|Location1.Y=1924.055mil|Location2.Y=1936.682mil|Absolute=True">Silk To Silk Clearance Constraint: (0.099mm &lt; 0.254mm) Between Arc (98.8mm,49.8mm) on Top Overlay And Text "R30" (99.06mm,49.098mm) on Top Overlay Silk Text to Silk Clearance [0.099mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2730.295mil|Location2.X=2741.545mil|Location1.Y=1819.32mil|Location2.Y=1830.57mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2730.295mil|Location2.X=2741.545mil|Location1.Y=1819.32mil|Location2.Y=1830.57mil|Absolute=True">Silk To Silk Clearance Constraint: (0.055mm &lt; 0.254mm) Between Text "C12" (69.367mm,46.431mm) on Top Overlay And Track (65.851mm,46.176mm)(72.651mm,46.176mm) on Top Overlay Silk Text to Silk Clearance [0.055mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2526.641mil|Location2.X=2534.307mil|Location1.Y=1749.765mil|Location2.Y=1757.432mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2526.641mil|Location2.X=2534.307mil|Location1.Y=1749.765mil|Location2.Y=1757.432mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C13" (63.703mm,43.917mm) on Top Overlay And Track (64.274mm,43.663mm)(64.274mm,45.593mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2571.251mil|Location2.X=2582.501mil|Location1.Y=1720.351mil|Location2.Y=1731.601mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2571.251mil|Location2.X=2582.501mil|Location1.Y=1720.351mil|Location2.Y=1731.601mil|Absolute=True">Silk To Silk Clearance Constraint: (0.054mm &lt; 0.254mm) Between Text "C13" (63.703mm,43.917mm) on Top Overlay And Track (64.274mm,43.663mm)(67.639mm,43.663mm) on Top Overlay Silk Text to Silk Clearance [0.054mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2636.733mil|Location2.X=2647.983mil|Location1.Y=1720.352mil|Location2.Y=1731.602mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2636.733mil|Location2.X=2647.983mil|Location1.Y=1720.352mil|Location2.Y=1731.602mil|Absolute=True">Silk To Silk Clearance Constraint: (0.054mm &lt; 0.254mm) Between Text "C14" (66.116mm,43.917mm) on Top Overlay And Track (64.274mm,43.663mm)(67.639mm,43.663mm) on Top Overlay Silk Text to Silk Clearance [0.054mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2659.119mil|Location2.X=2666.786mil|Location1.Y=1745.762mil|Location2.Y=1753.429mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2659.119mil|Location2.X=2666.786mil|Location1.Y=1745.762mil|Location2.Y=1753.429mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C14" (66.116mm,43.917mm) on Top Overlay And Track (67.639mm,43.663mm)(67.639mm,45.593mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3344.232mil|Location2.X=3355.482mil|Location1.Y=1873.973mil|Location2.Y=1885.223mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3344.232mil|Location2.X=3355.482mil|Location1.Y=1873.973mil|Location2.Y=1885.223mil|Absolute=True">Silk To Silk Clearance Constraint: (0.11mm &lt; 0.254mm) Between Text "C18" (85.192mm,47.574mm) on Top Overlay And Text "C20" (82.982mm,47.117mm) on Top Overlay Silk Text to Silk Clearance [0.11mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3085.295mil|Location2.X=3096.545mil|Location1.Y=2085.871mil|Location2.Y=2097.121mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3085.295mil|Location2.X=3096.545mil|Location1.Y=2085.871mil|Location2.Y=2097.121mil|Absolute=True">Silk To Silk Clearance Constraint: (0.078mm &lt; 0.254mm) Between Text "C5" (78.384mm,53.213mm) on Top Overlay And Track (74.007mm,52.935mm)(82.257mm,52.935mm) on Top Overlay Silk Text to Silk Clearance [0.078mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2729.592mil|Location2.X=2737.259mil|Location1.Y=1753.685mil|Location2.Y=1761.351mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2729.592mil|Location2.X=2737.259mil|Location1.Y=1753.685mil|Location2.Y=1761.351mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C9" (69.367mm,43.891mm) on Top Overlay And Track (69.429mm,43.82mm)(69.429mm,45.68mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2732.086mil|Location2.X=2739.753mil|Location1.Y=1721.363mil|Location2.Y=1729.03mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2732.086mil|Location2.X=2739.753mil|Location1.Y=1721.363mil|Location2.Y=1729.03mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "C9" (69.367mm,43.891mm) on Top Overlay And Track (69.429mm,43.82mm)(72.629mm,43.82mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1562.845mil|Location2.X=1570.512mil|Location1.Y=3043.923mil|Location2.Y=3051.589mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1562.845mil|Location2.X=1570.512mil|Location1.Y=3043.923mil|Location2.Y=3051.589mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "J2" (39.294mm,76.835mm) on Top Overlay And Track (38.995mm,77.413mm)(45.595mm,77.413mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1006.214mil|Location2.X=1017.464mil|Location1.Y=3328.442mil|Location2.Y=3339.692mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1006.214mil|Location2.X=1017.464mil|Location1.Y=3328.442mil|Location2.Y=3339.692mil|Absolute=True">Silk To Silk Clearance Constraint: (0.151mm &lt; 0.254mm) Between Text "JP2" (25.451mm,84.811mm) on Top Overlay And Track (25.5mm,84.46mm)(35.2mm,84.46mm) on Top Overlay Silk Text to Silk Clearance [0.151mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1000.104mil|Location2.X=1007.77mil|Location1.Y=3335.167mil|Location2.Y=3342.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1000.104mil|Location2.X=1007.77mil|Location1.Y=3335.167mil|Location2.Y=3342.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "JP2" (25.451mm,84.811mm) on Top Overlay And Track (25.5mm,84.54mm)(25.5mm,100.62mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1082.781mil|Location2.X=1090.447mil|Location1.Y=3335.167mil|Location2.Y=3342.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1082.781mil|Location2.X=1090.447mil|Location1.Y=3335.167mil|Location2.Y=3342.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "JP2" (25.451mm,84.811mm) on Top Overlay And Track (27.6mm,84.54mm)(27.6mm,100.697mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1299.499mil|Location2.X=1310.749mil|Location1.Y=4778.551mil|Location2.Y=4789.801mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1299.499mil|Location2.X=1310.749mil|Location1.Y=4778.551mil|Location2.Y=4789.801mil|Absolute=True">Silk To Silk Clearance Constraint: (0.214mm &lt; 0.254mm) Between Text "Q3" (34.275mm,121.675mm) on Bottom Overlay And Track (31.652mm,121.261mm)(33.452mm,121.261mm) on Bottom Overlay Silk Text to Silk Clearance [0.214mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.403mil|Location2.X=1539.07mil|Location1.Y=3458.647mil|Location2.Y=3466.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.403mil|Location2.X=1539.07mil|Location1.Y=3458.647mil|Location2.Y=3466.314mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R15" (38.989mm,87.427mm) on Top Overlay And Track (38.995mm,87.947mm)(38.995mm,88.297mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.403mil|Location2.X=1539.07mil|Location1.Y=3458.647mil|Location2.Y=3466.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1531.403mil|Location2.X=1539.07mil|Location1.Y=3458.647mil|Location2.Y=3466.314mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R15" (38.989mm,87.427mm) on Top Overlay And Track (38.995mm,87.947mm)(45.595mm,87.947mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.167mil|Location2.X=1746.833mil|Location1.Y=3043.923mil|Location2.Y=3051.589mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.167mil|Location2.X=1746.833mil|Location1.Y=3043.923mil|Location2.Y=3051.589mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R19" (44.272mm,77.419mm) on Top Overlay And Track (38.995mm,77.413mm)(45.595mm,77.413mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.245mil|Location2.X=1798.912mil|Location1.Y=3049.086mil|Location2.Y=3056.753mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.245mil|Location2.X=1798.912mil|Location1.Y=3049.086mil|Location2.Y=3056.753mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R19" (44.272mm,77.419mm) on Top Overlay And Track (45.595mm,77.413mm)(45.595mm,77.763mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.167mil|Location2.X=1746.833mil|Location1.Y=3458.647mil|Location2.Y=3466.314mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.167mil|Location2.X=1746.833mil|Location1.Y=3458.647mil|Location2.Y=3466.314mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R20" (44.272mm,88.087mm) on Top Overlay And Track (38.995mm,87.947mm)(45.595mm,87.947mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.245mil|Location2.X=1798.912mil|Location1.Y=3464.167mil|Location2.Y=3471.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.245mil|Location2.X=1798.912mil|Location1.Y=3464.167mil|Location2.Y=3471.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R20" (44.272mm,88.087mm) on Top Overlay And Track (45.595mm,87.947mm)(45.595mm,88.297mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.476mil|Location2.X=1497.726mil|Location1.Y=4883.893mil|Location2.Y=4895.143mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.476mil|Location2.X=1497.726mil|Location1.Y=4883.893mil|Location2.Y=4895.143mil|Absolute=True">Silk To Silk Clearance Constraint: (0.021mm &lt; 0.254mm) Between Text "R25" (35.839mm,123.444mm) on Top Overlay And Track (38.06mm,122.7mm)(38.06mm,127mm) on Top Overlay Silk Text to Silk Clearance [0.021mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.476mil|Location2.X=1497.726mil|Location1.Y=4883.893mil|Location2.Y=4895.143mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1486.476mil|Location2.X=1497.726mil|Location1.Y=4883.893mil|Location2.Y=4895.143mil|Absolute=True">Silk To Silk Clearance Constraint: (0.021mm &lt; 0.254mm) Between Text "R25" (35.839mm,123.444mm) on Top Overlay And Track (38.06mm,123mm)(38.06mm,125mm) on Top Overlay Silk Text to Silk Clearance [0.021mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.167mil|Location2.X=1746.833mil|Location1.Y=2669.552mil|Location2.Y=2677.219mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.167mil|Location2.X=1746.833mil|Location1.Y=2669.552mil|Location2.Y=2677.219mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R27" (44.272mm,67.97mm) on Top Overlay And Track (38.995mm,67.904mm)(45.595mm,67.904mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.245mil|Location2.X=1798.912mil|Location1.Y=2672.167mil|Location2.Y=2679.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1791.245mil|Location2.X=1798.912mil|Location1.Y=2672.167mil|Location2.Y=2679.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "R27" (44.272mm,67.97mm) on Top Overlay And Track (45.595mm,67.904mm)(45.595mm,68.254mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3890.967mil|Location2.X=3902.217mil|Location1.Y=1924.055mil|Location2.Y=1936.682mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=3890.967mil|Location2.X=3902.217mil|Location1.Y=1924.055mil|Location2.Y=1936.682mil|Absolute=True">Silk To Silk Clearance Constraint: (0.099mm &lt; 0.254mm) Between Text "R30" (99.06mm,49.098mm) on Top Overlay And Track (98.8mm,46.5mm)(98.8mm,48.95mm) on Top Overlay Silk Text to Silk Clearance [0.099mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2577.784mil|Location2.X=2589.034mil|Location1.Y=1824.295mil|Location2.Y=1835.545mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2577.784mil|Location2.X=2589.034mil|Location1.Y=1824.295mil|Location2.Y=1835.545mil|Absolute=True">Silk To Silk Clearance Constraint: (0.165mm &lt; 0.254mm) Between Text "R9" (64.237mm,46.355mm) on Top Overlay And Track (65.851mm,46.176mm)(65.851mm,47.576mm) on Top Overlay Silk Text to Silk Clearance [0.165mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2444.985mil|Location2.X=2452.652mil|Location1.Y=2687.167mil|Location2.Y=2694.833mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2444.985mil|Location2.X=2452.652mil|Location1.Y=2687.167mil|Location2.Y=2694.833mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U1" (61.493mm,68.351mm) on Top Overlay And Track (62.2mm,68.225mm)(62.2mm,69.675mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2446.685mil|Location2.X=2454.351mil|Location1.Y=2682.192mil|Location2.Y=2689.858mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2446.685mil|Location2.X=2454.351mil|Location1.Y=2682.192mil|Location2.Y=2689.858mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U1" (61.493mm,68.351mm) on Top Overlay And Track (62.2mm,68.225mm)(65.085mm,68.225mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1439.167mil|Location2.X=1446.833mil|Location1.Y=3276.088mil|Location2.Y=3283.755mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1439.167mil|Location2.X=1446.833mil|Location1.Y=3276.088mil|Location2.Y=3283.755mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U6" (36.652mm,82.88mm) on Top Overlay And Track (36.04mm,83.31mm)(37.97mm,83.31mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1491.049mil|Location2.X=1498.715mil|Location1.Y=3288.685mil|Location2.Y=3296.351mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1491.049mil|Location2.X=1498.715mil|Location1.Y=3288.685mil|Location2.Y=3296.351mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U6" (36.652mm,82.88mm) on Top Overlay And Track (37.97mm,83.31mm)(37.97mm,86.675mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1439.167mil|Location2.X=1446.833mil|Location1.Y=3704.237mil|Location2.Y=3711.904mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1439.167mil|Location2.X=1446.833mil|Location1.Y=3704.237mil|Location2.Y=3711.904mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U7" (36.652mm,93.396mm) on Top Overlay And Track (36.04mm,94.185mm)(37.97mm,94.185mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1491.049mil|Location2.X=1498.715mil|Location1.Y=3704.237mil|Location2.Y=3711.904mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=I:\Bai_Tap\ESP32-SIM800C\ESP32-SIM800C_KIENPcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1491.049mil|Location2.X=1498.715mil|Location1.Y=3704.237mil|Location2.Y=3711.904mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.254mm) Between Text "U7" (36.652mm,93.396mm) on Top Overlay And Track (37.97mm,94.185mm)(37.97mm,97.55mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
